@@ -52,7 +52,7 @@ def move_objects(
         hook.delete(source_bucket, storage_object)
 
 with DAG ( 
-    'bigquery_data_load',
+    'data_load',
     schedule_interval='@hourly',
     catchup=False,
     default_args=default_arguments,
@@ -79,7 +79,7 @@ with DAG (
                 
         '''
         query_history_crime = SnowflakeOperator(
-            task_id="squery_history_crime",
+            task_id="query_history_crime",
             sql=query,
             snowflake_conn_id="snowflake_conn",
         )
